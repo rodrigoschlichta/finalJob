@@ -21,13 +21,14 @@ import com.bootcamp.finaljob.services.ClientService;
 
 
 @RestController
-@RequestMapping(value = "/clients")
+@RequestMapping (value = "/clients")
 public class ClientResource {
 	
 	@Autowired
 	private ClientService service;
 	
-	public ResponseEntity<List<ClientDTO>> findall(){
+	@GetMapping
+	public ResponseEntity<List<ClientDTO>> findAll(){
 		
 		List<ClientDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
