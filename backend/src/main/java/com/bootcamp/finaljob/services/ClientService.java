@@ -16,6 +16,9 @@ import com.bootcamp.finaljob.repositories.ClientRepository;
 
 
 
+
+
+
 @Service
 public class ClientService {
 	
@@ -63,6 +66,13 @@ public class ClientService {
 		entity.setChildren(dto.getChildren());
 		entity = repository.save(entity);
 		return new ClientDTO(entity);
+	}
+	
+	
+	public void delete(Long id) {
+	
+		repository.deleteById(id);
+		
 	}
 
 }
