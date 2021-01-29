@@ -3,10 +3,13 @@ package com.bootcamp.finaljob.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 
@@ -26,6 +29,11 @@ public class ClientEntity implements Serializable {
 	private Instant birthdate;
 	private Integer children;
 	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant createAt;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant updateAt;
 	
 	public ClientEntity() {
 		
@@ -115,7 +123,26 @@ public class ClientEntity implements Serializable {
 		this.children = children;
 	}
 
+	
+	public Instant getCreateAt() {
+		return createAt;
+	}
 
+
+	public Instant getUpdateAt() {
+		return updateAt;
+	}
+
+
+	@PrePersist
+	public void prePersist() {
+		createAt = Instant.now();
+	}
+	
+	@PreUpdate
+	public void preUpadate() {
+		updateAt = Instant.now();
+	}
 
 	@Override
 	public int hashCode() {
