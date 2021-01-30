@@ -83,7 +83,7 @@ public class ClientService {
 		    throw new ResourceNotFoundException("Id not Found"+ id);
 		}
 		catch(DataIntegrityViolationException e) {
-			throw new DataBaseException("Integrity Viiolation");
+			throw new DataBaseException("Integrity Violation");
 		}
 			
 		}
